@@ -28,6 +28,17 @@
                 lucinda = holder;
                 Console.WriteLine("References have been swapped.");
             }
+            // example of reference changing an object without working through other reference
+            else if (input == '4')
+            {
+                lloyd = lucinda;
+                lloyd.earsize += 4321;
+                lloyd.WhoAmI();
+            }
+            else if (input == '5')
+            {
+                lucinda.SpeakTo(lloyd, "Wassup, Lloyd!");
+            }
             else if (input == 'q' || input == 'Q') return;
             else Console.WriteLine("Not a valid input.");
             Console.WriteLine();
@@ -44,5 +55,16 @@ class Elephant
     {
         Console.WriteLine("My name is " + name + ".");
         Console.WriteLine("My ears are " + earsize + " inches tall.");
+    }
+    // method to hear a message
+    public void HearMessage(string message, Elephant whosaidit)
+    {
+        Console.WriteLine(name + " received a message");
+        Console.WriteLine(whosaidit.name + " said this: " + message);
+    }
+    // method to speak a message
+    public void SpeakTo(Elephant talkto, string message)
+    {
+        talkto.HearMessage(message, this);
     }
 }
